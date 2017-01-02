@@ -60,5 +60,16 @@ namespace OctoCTests
 			Assert.IsFalse(arrayList.Contains(4));
 
 		}
+
+		[TestMethod]
+		public void Contains16k()
+		{
+			var multiplier = 256;
+			var arrayList = new ArrayList<int>();
+			for (var i = 0; i < multiplier * multiplier; i++) arrayList.Add(i);
+			Assert.AreEqual(multiplier * multiplier, arrayList.Count);
+			for (var i = 0; i < multiplier; i++) Assert.IsTrue(arrayList.Contains(arrayList[arrayList.Count - 1 - i]));
+			Assert.IsFalse(arrayList.Contains(multiplier * multiplier));
+		}
 	}
 }
