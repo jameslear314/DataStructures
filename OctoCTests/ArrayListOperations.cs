@@ -37,5 +37,16 @@ namespace OctoCTests
 			arrayList[0] = 1;
 			Assert.AreEqual(1, arrayList[0]);
 		}
+
+		[TestMethod]
+		public void Clear()
+		{
+			var arrayList = new ArrayList<int>(0);
+			Assert.AreEqual(1, arrayList.Count);
+			Assert.AreEqual(0, arrayList[0]);
+			arrayList.Clear();
+			Assert.AreEqual(0, arrayList.Count);
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList[0]);
+		}
 	}
 }
