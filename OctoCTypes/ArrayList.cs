@@ -58,7 +58,7 @@ namespace OctoCTypes
 
 		public void Clear()
 		{
-			throw new NotImplementedException();
+			count = 0;
 		}
 
 		public bool Contains(T item)
