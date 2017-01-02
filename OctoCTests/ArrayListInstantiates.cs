@@ -21,5 +21,13 @@ namespace OctoCTests
 			Assert.IsNotNull(arrayList, "ArrayList was not instantiated with an element");
 			Assert.AreEqual(1, arrayList.Count, "ArrayList should have one element.");
 		}
-    }
+
+		[TestMethod]
+		public void Array()
+		{
+			var arrayList = new ArrayList<int> { 0, 2, 3 };
+			Assert.AreEqual(3, arrayList[2]);
+			Assert.AreEqual(3, arrayList.Count);
+		}
+	}
 }

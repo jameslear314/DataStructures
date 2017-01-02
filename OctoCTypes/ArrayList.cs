@@ -38,7 +38,6 @@ namespace OctoCTypes
 
 		private void Expand()
 		{
-			System.Diagnostics.Debug.WriteLine("Expanding from " + storageSize);
 			var oldArray = storage;
 			storage = new T[storageSize * 2];
 			var i = 0;
@@ -52,7 +51,6 @@ namespace OctoCTypes
 
 		public void Add(T item)
 		{
-			Console.WriteLine("Add begun " + storageSize);
 			while (count >= storageSize) Expand();
 			storage[count] = item;
 			count++;
