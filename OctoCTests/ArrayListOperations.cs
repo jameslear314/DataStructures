@@ -48,5 +48,17 @@ namespace OctoCTests
 			Assert.AreEqual(0, arrayList.Count);
 			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList[0]);
 		}
+
+		[TestMethod]
+		public void Contains()
+		{
+			var arrayList = new ArrayList<int> { 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55 };
+			for (var i = 0; i < arrayList.Count; i++)
+			{
+				Assert.IsTrue(arrayList.Contains(arrayList[i]));
+			}
+			Assert.IsFalse(arrayList.Contains(4));
+
+		}
 	}
 }
