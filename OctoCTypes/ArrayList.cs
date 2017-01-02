@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 
 namespace OctoCTypes
 {
-	internal class ArrayList<T> : IList<T>
+	public class ArrayList<T> : IList<T>
 	{
 		private T[] storage;
 		private int storageSize;
@@ -13,17 +12,16 @@ namespace OctoCTypes
 
 		public ArrayList()
 		{
-			storageSize = 0;
+			storageSize = 1;
+			storage = new T[1];
 			count = 0;
 		}
 
 		public ArrayList(T element)
 		{
 			storageSize = 1;
-			storage = new T[1];
-			storage[1] = element;
+			storage = new T[1] { element };
 			count = 1;
-			
 		}
 
 		public T this[int index] {
@@ -35,13 +33,29 @@ namespace OctoCTypes
 				if (index > Count - 1 || index < 0) throw new ArgumentOutOfRangeException("Index was outside the bounds of the ArrayList.");
 				storage[index] = value;
 			} }
-
 		public int Count { get { return count; } }
 		public bool IsReadOnly { get { return false; } }
 
+		private void Expand()
+		{
+			System.Diagnostics.Debug.WriteLine("Expanding from " + storageSize);
+			var oldArray = storage;
+			storage = new T[storageSize * 2];
+			var i = 0;
+			while (i < count)
+			{
+				storage[i] = oldArray[i];
+				i++;
+			}
+			storageSize *= 2;
+		}
+
 		public void Add(T item)
 		{
-			throw new NotImplementedException();
+			Console.WriteLine("Add begun " + storageSize);
+			while (count >= storageSize) Expand();
+			storage[count] = item;
+			count++;
 		}
 
 		public void Clear()

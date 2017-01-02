@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26014.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OctoCTypes", "OctoCTypes\OctoCTypes.csproj", "{432FE994-D006-497C-8622-6DC023772C38}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OctoCTests", "OctoCTests\OctoCTests.csproj", "{43D9A301-A0A3-43CF-94E4-4803CF957591}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,18 @@ Global
 		{432FE994-D006-497C-8622-6DC023772C38}.Release|x64.Build.0 = Release|x64
 		{432FE994-D006-497C-8622-6DC023772C38}.Release|x86.ActiveCfg = Release|x86
 		{432FE994-D006-497C-8622-6DC023772C38}.Release|x86.Build.0 = Release|x86
+		{43D9A301-A0A3-43CF-94E4-4803CF957591}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43D9A301-A0A3-43CF-94E4-4803CF957591}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43D9A301-A0A3-43CF-94E4-4803CF957591}.Debug|x64.ActiveCfg = Debug|x64
+		{43D9A301-A0A3-43CF-94E4-4803CF957591}.Debug|x64.Build.0 = Debug|x64
+		{43D9A301-A0A3-43CF-94E4-4803CF957591}.Debug|x86.ActiveCfg = Debug|x86
+		{43D9A301-A0A3-43CF-94E4-4803CF957591}.Debug|x86.Build.0 = Debug|x86
+		{43D9A301-A0A3-43CF-94E4-4803CF957591}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43D9A301-A0A3-43CF-94E4-4803CF957591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43D9A301-A0A3-43CF-94E4-4803CF957591}.Release|x64.ActiveCfg = Release|x64
+		{43D9A301-A0A3-43CF-94E4-4803CF957591}.Release|x64.Build.0 = Release|x64
+		{43D9A301-A0A3-43CF-94E4-4803CF957591}.Release|x86.ActiveCfg = Release|x86
+		{43D9A301-A0A3-43CF-94E4-4803CF957591}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
