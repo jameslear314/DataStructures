@@ -5,7 +5,7 @@ using System;
 namespace OctoCTests
 {
 	[TestClass]
-	public class ArrayList
+	public class ArrayListTests
 	{
 		[TestMethod]
 		public void Empty()
