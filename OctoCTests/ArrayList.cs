@@ -5,8 +5,32 @@ using System;
 namespace OctoCTests
 {
 	[TestClass]
-	public class ArrayListOperations
+	public class ArrayList
 	{
+		[TestMethod]
+		public void Empty()
+		{
+			var arrayList = new ArrayList<int>();
+			Assert.IsNotNull(arrayList, "ArrayList was not instantiated empty");
+			Assert.AreEqual(0, arrayList.Count, "Empty ArrayList should have no elements.");
+		}
+
+		[TestMethod]
+		public void OneElement()
+		{
+			var arrayList = new ArrayList<int>(1);
+			Assert.IsNotNull(arrayList, "ArrayList was not instantiated with an element");
+			Assert.AreEqual(1, arrayList.Count, "ArrayList should have one element.");
+		}
+
+		[TestMethod]
+		public void Array()
+		{
+			var arrayList = new ArrayList<int> { 0, 2, 3 };
+			Assert.AreEqual(3, arrayList[2]);
+			Assert.AreEqual(3, arrayList.Count);
+		}
+
 		[TestMethod]
 		public void Add()
 		{
