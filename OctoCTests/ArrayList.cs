@@ -58,6 +58,7 @@ namespace OctoCTests
 		public void ValueInRange()
 		{
 			var arrayList = new ArrayList<int>(0);
+			Assert.AreEqual(0, arrayList[0]);
 			arrayList[0] = 1;
 			Assert.AreEqual(1, arrayList[0]);
 		}
