@@ -96,5 +96,21 @@ namespace OctoCTests
 			for (var i = 0; i < multiplier; i++) Assert.IsTrue(arrayList.Contains(arrayList[arrayList.Count - 1 - i]));
 			Assert.IsFalse(arrayList.Contains(multiplier * multiplier));
 		}
+
+		[TestMethod]
+		public void CopyTo()
+		{
+			var arrayList = new ArrayList<int>();
+			for (var i = 0; i < 10; i++) arrayList.Add(i);
+
+			int[] targetArray = null;
+			Assert.ThrowsException<ArgumentNullException>(() => arrayList.CopyTo(targetArray, 0));
+
+			targetArray = new int[10];
+			arrayList.CopyTo(targetArray, 0);
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList.CopyTo(targetArray, -1));
+			Assert.ThrowsException<ArithmeticException>(() => arrayList.CopyTo(targetArray, 1));
+
+		}
 	}
 }
