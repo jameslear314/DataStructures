@@ -109,7 +109,7 @@ namespace OctoCTests
 			targetArray = new int[10];
 			arrayList.CopyTo(targetArray, 0);
 			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList.CopyTo(targetArray, -1));
-			Assert.ThrowsException<ArithmeticException>(() => arrayList.CopyTo(targetArray, 1));
+			Assert.ThrowsException<ArgumentException>(() => arrayList.CopyTo(targetArray, 1));
 		}
 	}
 }

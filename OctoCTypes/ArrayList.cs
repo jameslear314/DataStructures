@@ -72,7 +72,12 @@ namespace OctoCTypes
 
 		public void CopyTo(T[] array, int arrayIndex)
 		{
-			storage.CopyTo(array, arrayIndex);
+			if (array == null) throw new ArgumentNullException("array", "Array receiving elements must not be null.");
+			if (arrayIndex < 0) throw new ArgumentOutOfRangeException("arrayIndex", "Array index must be positive.");
+			if (array.Length - arrayIndex > count) throw new ArgumentException("Array receiving elements must be longer than this ArrayList.");
+			var sourceArray = new T[count];
+			for (var i = 0; i < count; i++) sourceArray[i] = storage[i];
+			sourceArray.CopyTo(array, arrayIndex);
 		}
 
 		public IEnumerator<T> GetEnumerator()
