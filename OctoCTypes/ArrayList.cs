@@ -72,7 +72,7 @@ namespace OctoCTypes
 
 		public void CopyTo(T[] array, int arrayIndex)
 		{
-			throw new NotImplementedException();
+			storage.CopyTo(array, arrayIndex);
 		}
 
 		public IEnumerator<T> GetEnumerator()
