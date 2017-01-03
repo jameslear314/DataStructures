@@ -106,10 +106,12 @@ namespace OctoCTests
 			int[] targetArray = null;
 			Assert.ThrowsException<ArgumentNullException>(() => arrayList.CopyTo(targetArray, 0));
 
-			targetArray = new int[10];
-			arrayList.CopyTo(targetArray, 0);
+			targetArray = new int[11];
+			int start = 1;
+			arrayList.CopyTo(targetArray, start);
+			for (var i = 0; i < arrayList.Count; i++) Assert.AreEqual(arrayList[i], targetArray[start + i]);
 			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList.CopyTo(targetArray, -1));
-			Assert.ThrowsException<ArgumentException>(() => arrayList.CopyTo(targetArray, 1));
+			Assert.ThrowsException<ArgumentException>(() => arrayList.CopyTo(targetArray, 2));
 		}
 	}
 }
