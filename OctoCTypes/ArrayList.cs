@@ -73,7 +73,7 @@ namespace OctoCTypes
 		public void CopyTo(T[] array, int arrayIndex)
 		{
 			if (array == null) throw new ArgumentNullException("array", "Array receiving elements must not be null.");
-			if (arrayIndex < 0) throw new ArgumentOutOfRangeException("arrayIndex", "Array index must be positive.");
+			if (arrayIndex < 0) throw new ArgumentOutOfRangeException("arrayIndex", "Array index must be positive."); //TODO: Check that index is not past end of target Array.
 			if (array.Length - arrayIndex > count) throw new ArgumentException("Array receiving elements must be longer than this ArrayList.");
 			var sourceArray = new T[count];
 			for (var i = 0; i < count; i++) sourceArray[i] = storage[i];
@@ -97,7 +97,7 @@ namespace OctoCTypes
 
 		public void Insert(int index, T item)
 		{
-			if (index < 0 || index >= count) throw new ArgumentOutOfRangeException("index", "Index must be within the index range of the ArrayList");
+			IndexOutOfRange(index);
 			Add(storage[count - 1]);
 			for (var i = count - 2; i > index; i--)
 			{
@@ -113,12 +113,20 @@ namespace OctoCTypes
 
 		public void RemoveAt(int index)
 		{
-			throw new NotImplementedException();
+			IndexOutOfRange(index);
+			while (index < count) storage[index] = storage[++index];
+			count--;
+			storage[count] = default(T);
 		}
 
 		IEnumerator IEnumerable.GetEnumerator()
 		{
 			throw new NotImplementedException();
+		}
+
+		private void IndexOutOfRange(int index)
+		{
+			if (index < 0 || index >= count) throw new ArgumentOutOfRangeException("index", "Index must be within the index range of the ArrayList");
 		}
 	}
 }

@@ -151,8 +151,11 @@ namespace OctoCTests
 				count--;
 				Assert.AreEqual(count, arrayList.Count);
 
-				for (var j = 0; j < 10; j++) Assert.AreEqual(j, arrayList[j]);
+				for (var j = 0; j < arrayList.Count; j++) Assert.AreEqual(j, arrayList[j]);
 			}
+
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList.RemoveAt(-1));
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList.RemoveAt(6));
 		}
 
 		[TestMethod]
