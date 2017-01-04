@@ -194,7 +194,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void RemoveExceptions()
+		public void RemoveAtExceptions()
 		{
 			var arrayList = new ArrayList<int>();
 			for (var i = 0; i < 10; i++) arrayList.Add(i);
