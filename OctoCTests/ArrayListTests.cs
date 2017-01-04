@@ -111,6 +111,7 @@ namespace OctoCTests
 			arrayList.CopyTo(targetArray, start);
 			for (var i = 0; i < arrayList.Count; i++) Assert.AreEqual(arrayList[i], targetArray[start + i]);
 			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList.CopyTo(targetArray, -1));
+			Assert.ThrowsException<ArgumentException>(() => arrayList.CopyTo(targetArray, 11));
 			Assert.ThrowsException<ArgumentException>(() => arrayList.CopyTo(targetArray, 2));
 		}
 
