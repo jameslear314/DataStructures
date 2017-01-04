@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OctoCTypes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +13,9 @@ namespace OctoCTests
 		[TestMethod]
 		public void Empty()
 		{
-			Assert.Fail();
+			var pointList = new PointerList<int>();
+			Assert.IsNotNull(pointList, "pointList was not instantiated empty");
+			Assert.AreEqual(0, pointList.Count, "Empty pointList should have no elements.");
 		}
     }
 }

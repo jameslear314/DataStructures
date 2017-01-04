@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OctoCTypes
 {
-	class PointerList<T> : IList<T>
+	public class PointerList<T> : IList<T>
 	{
 		public T this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
