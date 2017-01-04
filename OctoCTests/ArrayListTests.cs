@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OctoCTypes;
 using System;
+using System.Collections.Generic;
 
 namespace OctoCTests
 {
@@ -220,6 +221,23 @@ namespace OctoCTests
 			}
 			Assert.AreEqual(false, arrayList.Contains(3));
 			Assert.IsFalse(arrayList.Remove(3));
+		}
+
+		[TestMethod]
+		public void IEnumeratorT()
+		{
+			var arrayList = new ArrayList<int>();
+			for (var i = 0; i < 5; i++) arrayList.Add(i);
+			IEnumerator<int> intEnum = arrayList.GetEnumerator();
+			int count = 0;
+
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => intEnum.Current);
+			while (intEnum.MoveNext())
+				Assert.AreEqual(count++, intEnum.Current);
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => intEnum.Current);
+			intEnum.Reset();
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => intEnum.Current);
+			intEnum.Dispose();
 		}
 	}
 }
