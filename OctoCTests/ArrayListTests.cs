@@ -135,5 +135,42 @@ namespace OctoCTests
 			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList.Insert(arrayList.Count, 0));
 			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList.Insert(-1, 0));
 		}
+
+		[TestMethod]
+		public void RemoveAtReverse()
+		{
+			var arrayList = new ArrayList<int>();
+			for (var i = 0; i < 10; i++) arrayList.Add(i);
+			var count = arrayList.Count;
+			Assert.AreEqual(10, count);
+			for (var i = 0; i < 10; i++) Assert.AreEqual(i, arrayList[i]);
+
+			for (var i = 10; i > 0; i--)
+			{
+				arrayList.RemoveAt(i - 1);
+				count--;
+				Assert.AreEqual(count, arrayList.Count);
+
+				for (var j = 0; j < 10; j++) Assert.AreEqual(j, arrayList[j]);
+			}
+		}
+
+		[TestMethod]
+		public void RemoveAtBetween()
+		{
+			var arrayList = new ArrayList<int>();
+			for (var i = 0; i < 10; i++) arrayList.Add(i);
+			var count = arrayList.Count;
+			Assert.AreEqual(10, count);
+			for (var i = 0; i < 10; i++) Assert.AreEqual(i, arrayList[i]);
+
+			for (var i = 4; i >= 0; i--)
+			{
+				arrayList.RemoveAt(2 * i + 1);
+				count--;
+				Assert.AreEqual(count, arrayList.Count);
+			}
+			for (var j = 0; j < 5; j++) Assert.AreEqual(2 * j, arrayList[j]);
+		}
 	}
 }
