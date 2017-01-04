@@ -33,5 +33,16 @@ namespace OctoCTests
 			Assert.AreEqual(1, pointList.Count, "pointList should have one element.");
 			Assert.AreEqual(0, pointList[0]);
 		}
+
+		[TestMethod]
+		[Timeout(100)]
+		public void Array()
+		{
+			var pointList = new PointerList<int> { 0, 2, 3 };
+			Assert.AreEqual(0, pointList[0]);
+			Assert.AreEqual(2, pointList[1]);
+			Assert.AreEqual(3, pointList[2]);
+			Assert.AreEqual(3, pointList.Count);
+		}
 	}
 }
