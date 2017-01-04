@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OctoCTypes;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace OctoCTests
@@ -238,6 +239,22 @@ namespace OctoCTests
 			intEnum.Reset();
 			Assert.ThrowsException<IndexOutOfRangeException>(() => intEnum.Current);
 			intEnum.Dispose();
+		}
+
+		[TestMethod]
+		public void IEnumerator()
+		{
+			var arrayList = new ArrayList<int>();
+			for (var i = 0; i < 5; i++) arrayList.Add(i);
+			IEnumerator intEnum = ((IEnumerable)arrayList).GetEnumerator();
+			int count = 0;
+
+			Assert.ThrowsException<IndexOutOfRangeException>(() => intEnum.Current);
+			while (intEnum.MoveNext())
+				Assert.AreEqual(count++, intEnum.Current);
+			Assert.ThrowsException<IndexOutOfRangeException>(() => intEnum.Current);
+			intEnum.Reset();
+			Assert.ThrowsException<IndexOutOfRangeException>(() => intEnum.Current);
 		}
 	}
 }
