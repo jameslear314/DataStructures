@@ -82,7 +82,10 @@ namespace OctoCTypes
 
 		public IEnumerator<T> GetEnumerator()
 		{
-			throw new NotImplementedException();
+			var sourceArray = new T[count];
+			for (var i = 0; i < count; i++)
+				sourceArray[i] = storage[i];
+			return new ArrayListEnumerator<T>(this);
 		}
 
 		public int IndexOf(T item)
@@ -128,6 +131,36 @@ namespace OctoCTypes
 		private void IndexOutOfRange(int index)
 		{
 			if (index < 0 || index >= count) throw new ArgumentOutOfRangeException("index", "Index must be within the index range of the ArrayList");
+		}
+	}
+
+	public class ArrayListEnumerator<T> : IEnumerator<T>
+	{
+		private readonly T[] storage;
+		private int current;
+		public ArrayListEnumerator(ArrayList<T> arrayList)
+		{
+			storage = new T[arrayList.Count];
+			for (var i = 0; i < arrayList.Count; i++)
+				storage[i] = arrayList[i];
+			current = -1;
+		}
+
+		public T Current { get { return storage[current]; } }
+
+		object IEnumerator.Current { get { return Current; } }
+
+		public void Dispose() { }
+
+		public bool MoveNext()
+		{
+			current++;
+			return current < storage.Length;
+		}
+
+		public void Reset()
+		{
+			current = -1;
 		}
 	}
 }
