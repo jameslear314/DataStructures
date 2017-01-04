@@ -8,8 +8,8 @@ using System.Text;
 namespace OctoCTests
 {
 	[TestClass]
-    public class PointerListTests
-    {
+	public class PointerListTests
+	{
 		[TestMethod]
 		public void Empty()
 		{
@@ -17,5 +17,12 @@ namespace OctoCTests
 			Assert.IsNotNull(pointList, "pointList was not instantiated empty");
 			Assert.AreEqual(0, pointList.Count, "Empty pointList should have no elements.");
 		}
-    }
+
+		[TestMethod]
+		public void IsNotReadOnly()
+		{
+			var pointList = new PointerList<int>();
+			Assert.IsFalse(pointList.IsReadOnly);
+		}
+	}
 }

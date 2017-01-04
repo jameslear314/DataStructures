@@ -256,5 +256,12 @@ namespace OctoCTests
 			intEnum.Reset();
 			Assert.ThrowsException<IndexOutOfRangeException>(() => intEnum.Current);
 		}
+
+		[TestMethod]
+		public void IsNotReadOnly()
+		{
+			var arrayList = new ArrayList<int>();
+			Assert.IsFalse(arrayList.IsReadOnly);
+		}
 	}
 }
