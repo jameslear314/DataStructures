@@ -87,7 +87,12 @@ namespace OctoCTypes
 
 		public int IndexOf(T item)
 		{
-			throw new NotImplementedException();
+			for (var i = 0; i < count; i++)
+			{
+				if (storage[i].Equals(item))
+					return i;
+			}
+			return -1;
 		}
 
 		public void Insert(int index, T item)
