@@ -31,6 +31,7 @@ namespace OctoCTests
 			var pointList = new PointerList<int>(0);
 			Assert.IsNotNull(pointList, "pointList was not instantiated with an element");
 			Assert.AreEqual(1, pointList.Count, "pointList should have one element.");
+			Assert.AreEqual(0, pointList[0]);
 		}
 	}
 }
