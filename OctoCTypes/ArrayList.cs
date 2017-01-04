@@ -97,7 +97,13 @@ namespace OctoCTypes
 
 		public void Insert(int index, T item)
 		{
-			throw new NotImplementedException();
+			if (index < 0 || index >= count) throw new ArgumentOutOfRangeException("index", "Index must be within the index range of the ArrayList");
+			Add(storage[count - 1]);
+			for (var i = count - 2; i > index; i--)
+			{
+				storage[i] = storage[i - 1];
+			}
+			storage[index] = item;
 		}
 
 		public bool Remove(T item)

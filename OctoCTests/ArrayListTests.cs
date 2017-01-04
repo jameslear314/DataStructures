@@ -131,6 +131,9 @@ namespace OctoCTests
 			for (var i = 0; i < 10; i++) arrayList.Insert(2 * i, 2 * i - 1);
 
 			for (var i = 0; i < 20; i++) Assert.AreEqual(i - 1, arrayList[i]);
+
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList.Insert(arrayList.Count, 0));
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList.Insert(-1, 0));
 		}
 	}
 }
