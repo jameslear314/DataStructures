@@ -14,6 +14,11 @@ namespace OctoCTypes
 			storage = new Dictionary<int, T>();
 		}
 
+		public PointerList(int v)
+		{
+			throw new NotImplementedException();
+		}
+
 		public T this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
 		public int Count { get { return storage.Count; } }
