@@ -45,7 +45,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void ValueOutOfRange()
+		public void ValueExceptions()
 		{
 			var arrayList = new ArrayList<int>(0);
 			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList[-1]);
@@ -55,7 +55,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void ValueInRange()
+		public void Value()
 		{
 			var arrayList = new ArrayList<int>(0);
 			Assert.AreEqual(0, arrayList[0]);
@@ -71,7 +71,14 @@ namespace OctoCTests
 			Assert.AreEqual(0, arrayList[0]);
 			arrayList.Clear();
 			Assert.AreEqual(0, arrayList.Count);
-			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList[0]);
+		}
+
+		[TestMethod]
+		public void ClearExceptions()
+		{
+			var arrayList = new ArrayList<int>(0);
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList[arrayList.Count]);
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList[-1]);
 		}
 
 		[TestMethod]
@@ -102,14 +109,21 @@ namespace OctoCTests
 		{
 			var arrayList = new ArrayList<int>();
 			for (var i = 0; i < 10; i++) arrayList.Add(i);
-
-			int[] targetArray = null;
-			Assert.ThrowsException<ArgumentNullException>(() => arrayList.CopyTo(targetArray, 0));
-
-			targetArray = new int[11];
+			
+			var targetArray = new int[11];
 			int start = 1;
 			arrayList.CopyTo(targetArray, start);
 			for (var i = 0; i < arrayList.Count; i++) Assert.AreEqual(arrayList[i], targetArray[start + i]);
+		}
+
+		[TestMethod]
+		public void CopyToExceptions()
+		{
+			var arrayList = new ArrayList<int>();
+			for (var i = 0; i < 10; i++) arrayList.Add(i);
+			int[] targetArray = null;
+			Assert.ThrowsException<ArgumentNullException>(() => arrayList.CopyTo(targetArray, 0));
+			targetArray = new int[11];
 			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList.CopyTo(targetArray, -1));
 			Assert.ThrowsException<ArgumentException>(() => arrayList.CopyTo(targetArray, 11));
 			Assert.ThrowsException<ArgumentException>(() => arrayList.CopyTo(targetArray, 2));
@@ -132,7 +146,12 @@ namespace OctoCTests
 			for (var i = 0; i < 10; i++) arrayList.Insert(2 * i, 2 * i - 1);
 
 			for (var i = 0; i < 20; i++) Assert.AreEqual(i - 1, arrayList[i]);
+		}
 
+		[TestMethod]
+		public void InsertExceptions()
+		{
+			var arrayList = new ArrayList<int>(0);
 			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList.Insert(arrayList.Count, 0));
 			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList.Insert(-1, 0));
 		}
@@ -154,9 +173,6 @@ namespace OctoCTests
 
 				for (var j = 0; j < arrayList.Count; j++) Assert.AreEqual(j, arrayList[j]);
 			}
-
-			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList.RemoveAt(-1));
-			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList.RemoveAt(6));
 		}
 
 		[TestMethod]
@@ -175,6 +191,15 @@ namespace OctoCTests
 				Assert.AreEqual(count, arrayList.Count);
 			}
 			for (var j = 0; j < 5; j++) Assert.AreEqual(2 * j, arrayList[j]);
+		}
+
+		[TestMethod]
+		public void RemoveExceptions()
+		{
+			var arrayList = new ArrayList<int>();
+			for (var i = 0; i < 10; i++) arrayList.Add(i);
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList.RemoveAt(-1));
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList.RemoveAt(10));
 		}
 	}
 }
