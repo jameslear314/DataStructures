@@ -212,8 +212,13 @@ namespace OctoCTests
 			for (var i = 0; i < 10; i++) Assert.AreEqual(i, arrayList[i]);
 
 			Assert.IsTrue(arrayList.Remove(3));
-			for (var i = 0; i < 10; i++) if (i != 3) Assert.AreEqual(i, arrayList[i]);
-			Assert.AreEqual(-1, arrayList.Contains(3));
+			var offset = 0;
+			for (var i = 0; i < arrayList.Count; i++)
+			{
+				if (i != 3) Assert.AreEqual(i + offset, arrayList[i]);
+				else offset++;
+			}
+			Assert.AreEqual(false, arrayList.Contains(3));
 			Assert.IsFalse(arrayList.Remove(3));
 		}
 	}
