@@ -7,9 +7,16 @@ namespace OctoCTypes
 {
 	public class PointerList<T> : IList<T>
 	{
+		public Dictionary<int, T> storage;
+
+		public PointerList()
+		{
+			storage = new Dictionary<int, T>();
+		}
+
 		public T this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-		public int Count => throw new NotImplementedException();
+		public int Count { get { return storage.Count; } }
 
 		public bool IsReadOnly => throw new NotImplementedException();
 
