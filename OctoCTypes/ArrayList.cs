@@ -51,7 +51,8 @@ namespace OctoCTypes
 
 		public void Add(T item)
 		{
-			while (count >= storageSize) Expand();
+			while (count >= storageSize)
+				Expand();
 			storage[count] = item;
 			count++;
 		}
@@ -64,9 +65,7 @@ namespace OctoCTypes
 		public bool Contains(T item)
 		{
 			for (var i = 0; i < count; i++)
-			{
 				if (storage[i].Equals(item)) return true;
-			}
 			return false;
 		}
 
@@ -76,7 +75,8 @@ namespace OctoCTypes
 			if (arrayIndex < 0) throw new ArgumentOutOfRangeException("arrayIndex", "Array index must be positive.");
 			if (array.Length - arrayIndex < count) throw new ArgumentException("Array receiving elements must be longer than this ArrayList.");
 			var sourceArray = new T[count];
-			for (var i = 0; i < count; i++) sourceArray[i] = storage[i];
+			for (var i = 0; i < count; i++)
+				sourceArray[i] = storage[i];
 			sourceArray.CopyTo(array, arrayIndex);
 		}
 
@@ -88,10 +88,8 @@ namespace OctoCTypes
 		public int IndexOf(T item)
 		{
 			for (var i = 0; i < count; i++)
-			{
 				if (storage[i].Equals(item))
 					return i;
-			}
 			return -1;
 		}
 
@@ -100,9 +98,7 @@ namespace OctoCTypes
 			IndexOutOfRange(index);
 			Add(storage[count - 1]);
 			for (var i = count - 2; i > index; i--)
-			{
 				storage[i] = storage[i - 1];
-			}
 			storage[index] = item;
 		}
 
@@ -118,7 +114,8 @@ namespace OctoCTypes
 		public void RemoveAt(int index)
 		{
 			IndexOutOfRange(index);
-			while (index < count) storage[index] = storage[++index];
+			while (index < count)
+				storage[index] = storage[++index];
 			count--;
 			storage[count] = default(T);
 		}
