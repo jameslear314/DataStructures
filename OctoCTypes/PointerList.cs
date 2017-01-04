@@ -7,16 +7,19 @@ namespace OctoCTypes
 {
 	public class PointerList<T> : IList<T>
 	{
-		public Dictionary<int, T> storage;
+		private Dictionary<int, Element<T>> storage;
+		private int start;
 
 		public PointerList()
 		{
-			storage = new Dictionary<int, T>();
+			storage = new Dictionary<int, Element<T>>();
 		}
 
-		public PointerList(int v)
+		public PointerList(T element)
 		{
-			throw new NotImplementedException();
+			var generator = new Random();
+			start = generator.Next();
+			storage = new Dictionary<int, Element<T>> { { start, new Element<T> { Value = element } } };
 		}
 
 		public T this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -74,5 +77,13 @@ namespace OctoCTypes
 		{
 			throw new NotImplementedException();
 		}
+
+		internal class Element<S>
+		{
+			internal int next;
+			internal S Value;
+		}
 	}
+
+	
 }
