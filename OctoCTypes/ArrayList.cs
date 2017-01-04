@@ -125,7 +125,7 @@ namespace OctoCTypes
 
 		IEnumerator IEnumerable.GetEnumerator()
 		{
-			throw new NotImplementedException();
+			return GetEnumerator();
 		}
 
 		private void IndexOutOfRange(int index)
