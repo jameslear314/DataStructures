@@ -122,5 +122,15 @@ namespace OctoCTests
 
 			for (var i = 0; i < 10; i++) Assert.AreEqual(i, arrayList.IndexOf(2 * i));
 		}
+
+		[TestMethod]
+		public void Insert()
+		{
+			var arrayList = new ArrayList<int>();
+			for (var i = 0; i < 10; i++) arrayList.Add(2 * i);
+			for (var i = 0; i < 10; i++) arrayList.Insert(2 * i, 2 * i - 1);
+
+			for (var i = 0; i < 20; i++) Assert.AreEqual(i - 1, arrayList[i]);
+		}
 	}
 }
