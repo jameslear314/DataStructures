@@ -19,10 +19,14 @@ namespace OctoCTypes
 		{
 			var generator = new Random();
 			start = generator.Next();
-			storage = new Dictionary<int, Element<T>> { { start, new Element<T> { Value = element } } };
+			storage = new Dictionary<int, Element<T>> { { start, new Element<T> { Value = element, Next = 0 } } };
 		}
 
-		public T this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+		public T this[int index] {
+			get {
+				int point = start;
+				return storage[point].Value;
+			} set => throw new NotImplementedException(); }
 
 		public int Count { get { return storage.Count; } }
 
@@ -80,7 +84,7 @@ namespace OctoCTypes
 
 		internal class Element<S>
 		{
-			internal int next;
+			internal int Next;
 			internal S Value;
 		}
 	}
