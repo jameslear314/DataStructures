@@ -10,16 +10,12 @@ namespace OctoCTypes
 		private Dictionary<int, Element<T>> storage;
 		private int start;
 
-		public PointerList()
-		{
-			storage = new Dictionary<int, Element<T>> { { 0, new Element<T> { Next = 0, Value = default(T) } } };
-		}
+		public PointerList() { Initialize(); }
 
 		public PointerList(T element)
 		{
-			var generator = new Random();
-			start = generator.Next();
-			storage = new Dictionary<int, Element<T>> { { 0, new Element<T> { Next = 0, Value = default(T) } }, { start, new Element<T> { Value = element, Next = 0 } } };
+			Initialize();
+			Add(element);
 		}
 
 		public T this[int index] {
@@ -55,11 +51,7 @@ namespace OctoCTypes
 			storage.Add(newPoint, new Element<T> { Next = 0, Value = item });
 		}
 
-		public void Clear()
-		{
-			storage = new Dictionary<int, Element<T>> { { 0, new Element<T> { Next = 0, Value = default(T) } } };
-			start = 0;
-		}
+		public void Clear() { Initialize(); }
 
 		public bool Contains(T item)
 		{
@@ -101,6 +93,12 @@ namespace OctoCTypes
 			throw new NotImplementedException();
 		}
 
+		private void Initialize()
+		{
+			storage = new Dictionary<int, Element<T>> { { 0, new Element<T> { Next = 0, Value = default(T) } } };
+			start = 0;
+		}
+
 		internal class Element<S>
 		{
 			internal int Next;
@@ -112,6 +110,4 @@ namespace OctoCTypes
 			}
 		}
 	}
-
-	
 }
