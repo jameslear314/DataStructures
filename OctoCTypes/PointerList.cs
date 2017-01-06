@@ -20,11 +20,13 @@ namespace OctoCTypes
 
 		public T this[int index] {
 			get {
-				if (start == 0) return storage[start].Value;
+				if (index < 0) throw new ArgumentOutOfRangeException("index", "Index must be greater than or equal to zero.");
 				int point = start;
 				var count = 0;
-				while (count++ < index)
+				while (count++ < index && storage[point].Next != 0)
 					point = storage[point].Next;
+				if (count < index || point == 0)
+					throw new ArgumentOutOfRangeException("index", "PointerList had fewer elements than index.");
 				return storage[point].Value;
 			} set => throw new NotImplementedException(); }
 
