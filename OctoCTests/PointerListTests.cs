@@ -109,9 +109,10 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void Contains16k()
+		[Timeout(100)]
+		public void Contains1k()
 		{
-			var multiplier = 128;
+			var multiplier = 32;
 			var pointList = new PointerList<int>();
 			for (var i = 0; i < multiplier * multiplier; i++) pointList.Add(i);
 			Assert.AreEqual(multiplier * multiplier, pointList.Count);
