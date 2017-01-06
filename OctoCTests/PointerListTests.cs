@@ -102,7 +102,7 @@ namespace OctoCTests
 			var pointList = new PointerList<int> { 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55 };
 			for (var i = 0; i < pointList.Count; i++)
 			{
-				Assert.IsTrue(pointList.Contains(pointList[i]));
+				Assert.IsTrue(pointList.Contains(pointList[i]), "found " + pointList[i].ToString() + " but expected " + i.ToString());
 			}
 			Assert.IsFalse(pointList.Contains(4));
 
