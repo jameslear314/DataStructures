@@ -91,7 +91,19 @@ namespace OctoCTypes
 
 		public int IndexOf(T item)
 		{
-			throw new NotImplementedException();
+			if (start != 0)
+			{
+				var position = start;
+				var index = 0;
+				while (position != 0)
+				{
+					if (storage[position].Value.Equals(item))
+						return index;
+					index++;
+					position = storage[position].Next;
+				}
+			}
+			return -1;
 		}
 
 		public void Insert(int index, T item)
