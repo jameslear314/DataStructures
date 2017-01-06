@@ -72,6 +72,16 @@ namespace OctoCTypes
 			if (array == null) throw new ArgumentNullException("array", "Array must not be null.");
 			if (arrayIndex < 0) throw new ArgumentOutOfRangeException("arrayIndex", "ArrayIndex must be greater than or equal to zero.");
 			if (array.Length - arrayIndex < Count) throw new ArgumentException("arrayIndex", "PointerList has more elements than fit in array.");
+
+			if (start == 0)
+				return;
+			var position = start;
+			var index = 0;
+			while (position != 0)
+			{
+				array[arrayIndex + index++] = storage[position].Value;
+				position = storage[position].Next;
+			}
 		}
 
 		public IEnumerator<T> GetEnumerator()
