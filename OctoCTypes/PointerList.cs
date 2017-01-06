@@ -57,7 +57,8 @@ namespace OctoCTypes
 
 		public void Clear()
 		{
-			throw new NotImplementedException();
+			storage = new Dictionary<int, Element<T>> { { 0, new Element<T> { Next = 0, Value = default(T) } } };
+			start = 0;
 		}
 
 		public bool Contains(T item)
