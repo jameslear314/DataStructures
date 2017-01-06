@@ -82,6 +82,7 @@ namespace OctoCTests
 		public void ClearExceptions()
 		{
 			var arrayList = new ArrayList<int>(0);
+			arrayList.Clear();
 			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList[arrayList.Count]);
 			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList[-1]);
 		}

@@ -91,6 +91,7 @@ namespace OctoCTests
 		public void ClearExceptions()
 		{
 			var pointList = new PointerList<int>(0);
+			pointList.Clear();
 			Assert.ThrowsException<ArgumentOutOfRangeException>(() => pointList[pointList.Count]);
 			Assert.ThrowsException<ArgumentOutOfRangeException>(() => pointList[-1]);
 		}
