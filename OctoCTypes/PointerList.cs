@@ -57,7 +57,14 @@ namespace OctoCTypes
 
 		public bool Contains(T item)
 		{
-			throw new NotImplementedException();
+			var position = start;
+			while (position != 0)
+			{
+				if (storage[position].Value.Equals(item))
+					return true;
+				position = storage[position].Next;
+			}
+			return false;
 		}
 
 		public void CopyTo(T[] array, int arrayIndex)
