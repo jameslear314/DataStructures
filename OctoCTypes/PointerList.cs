@@ -12,29 +12,47 @@ namespace OctoCTypes
 
 		public PointerList()
 		{
-			storage = new Dictionary<int, Element<T>>();
+			storage = new Dictionary<int, Element<T>> { { 0, new Element<T> { Next = 0, Value = default(T) } } };
 		}
 
 		public PointerList(T element)
 		{
 			var generator = new Random();
 			start = generator.Next();
-			storage = new Dictionary<int, Element<T>> { { start, new Element<T> { Value = element, Next = 0 } } };
+			storage = new Dictionary<int, Element<T>> { { 0, new Element<T> { Next = 0, Value = default(T) } }, { start, new Element<T> { Value = element, Next = 0 } } };
 		}
 
 		public T this[int index] {
 			get {
+				if (start == 0) return storage[start].Value;
 				int point = start;
+				var count = 0;
+				while (count++ < index)
+					point = storage[point].Next;
 				return storage[point].Value;
 			} set => throw new NotImplementedException(); }
 
-		public int Count { get { return storage.Count; } }
+		public int Count { get { return storage.Count - 1; } }
 
 		public bool IsReadOnly { get { return false; } }
 
 		public void Add(T item)
 		{
-			throw new NotImplementedException();
+			var generator = new Random();
+
+			var newPoint = generator.Next();
+			while (storage.ContainsKey(newPoint))
+				newPoint = generator.Next();
+
+			var position = start;
+			while (position != 0 && storage[position].Next != 0)
+				position = storage[position].Next;
+
+			if (position != 0)
+				storage[position].Next = newPoint;
+			else
+				start = newPoint;
+			storage.Add(newPoint, new Element<T> { Next = 0, Value = item });
 		}
 
 		public void Clear()
@@ -86,6 +104,11 @@ namespace OctoCTypes
 		{
 			internal int Next;
 			internal S Value;
+
+			public override string ToString()
+			{
+				return Value.ToString() + " -> " + Next;
+			}
 		}
 	}
 
