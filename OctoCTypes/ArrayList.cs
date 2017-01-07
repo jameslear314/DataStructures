@@ -146,7 +146,7 @@ namespace OctoCTypes
 			current = -1;
 		}
 
-		public T Current { get { return storage[current]; } }
+		public T Current { get { if (current < 0 || current >= storage.Length) return default(T); return storage[current]; } }
 
 		object IEnumerator.Current { get { return Current; } }
 
