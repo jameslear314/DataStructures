@@ -29,7 +29,18 @@ namespace OctoCTypes
 				if (count < index || point == 0)
 					throw new ArgumentOutOfRangeException("index", "PointerList had fewer elements than index.");
 				return storage[point].Value;
-			} set => throw new NotImplementedException(); }
+			} set {
+				if (index < 0) throw new ArgumentOutOfRangeException("index", "Index must be greater than or equal to zero.");
+				if (Count <= index) throw new ArgumentOutOfRangeException("index", "PointerList has fewer elements than index.");
+
+				int point = start;
+				int count = 0;
+				while (count++ < index && storage[point].Next != 0)
+					point = storage[point].Next;
+				if (count < index || point == 0)
+					throw new ArgumentOutOfRangeException("index", "PointerList had fewer elements than index.");
+				storage[point].Value = value;
+			} }
 
 		public int Count { get { return storage.Count - 1; } }
 
