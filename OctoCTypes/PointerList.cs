@@ -108,7 +108,8 @@ namespace OctoCTypes
 
 		public void Insert(int index, T item)
 		{
-			throw new NotImplementedException();
+			if (index < 0) throw new ArgumentOutOfRangeException("index", "Index must be greater than or equal to zero.");
+			if (index >= Count) throw new ArgumentOutOfRangeException("index", "Index must be less than Count.");
 		}
 
 		public bool Remove(T item)
