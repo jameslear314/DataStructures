@@ -21,6 +21,7 @@ namespace OctoCTypes
 		public T this[int index] {
 			get {
 				if (index < 0) throw new ArgumentOutOfRangeException("index", "Index must be greater than or equal to zero.");
+				if (Count <= index) throw new ArgumentOutOfRangeException("index", "PointerList has fewer elements than index.");
 				int point = start;
 				var count = 0;
 				while (count++ < index && storage[point].Next != 0)
