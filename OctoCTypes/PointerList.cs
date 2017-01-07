@@ -152,7 +152,15 @@ namespace OctoCTypes
 
 		public void RemoveAt(int index)
 		{
-			throw new NotImplementedException();
+			if (index < 0 || index >= Count) throw new ArgumentOutOfRangeException("index", "Index did not fall within the bounds of this ArrayList.");
+			var position = start;
+			for (var i = 0; i < index - 1; i++)
+			{
+				position = storage[position].Next;
+			}
+			var keyToRemove = storage[position].Next;
+			storage[position].Next = storage[keyToRemove].Next;
+			storage.Remove(keyToRemove);
 		}
 
 		IEnumerator IEnumerable.GetEnumerator()
