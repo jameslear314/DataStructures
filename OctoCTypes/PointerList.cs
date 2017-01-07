@@ -147,7 +147,11 @@ namespace OctoCTypes
 
 		public bool Remove(T item)
 		{
-			throw new NotImplementedException();
+			var indexToRemove = IndexOf(item);
+			if (indexToRemove == -1)
+				return false;
+			RemoveAt(indexToRemove);
+			return true;
 		}
 
 		public void RemoveAt(int index)
