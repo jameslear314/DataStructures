@@ -110,6 +110,27 @@ namespace OctoCTypes
 		{
 			if (index < 0) throw new ArgumentOutOfRangeException("index", "Index must be greater than or equal to zero.");
 			if (index >= Count) throw new ArgumentOutOfRangeException("index", "Index must be less than Count.");
+
+			var random = new Random();
+			var randomNext = random.Next();
+			while (storage.ContainsKey(randomNext))
+				randomNext = random.Next();
+
+			if (index == 0)
+			{
+				storage.Add(randomNext, new Element<T> { Next = start, Value = item });
+				start = randomNext;
+				return;
+			}
+
+			var position = start;
+			for (var i = 0; i < index - 1; i++)
+			{
+				position = storage[position].Next;
+			}
+			var element = new Element<T> { Next = storage[position].Next, Value = item };
+			storage.Add(randomNext, element);
+			storage[position].Next = randomNext;
 		}
 
 		public bool Remove(T item)
