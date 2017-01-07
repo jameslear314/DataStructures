@@ -98,7 +98,7 @@ namespace OctoCTypes
 
 		public IEnumerator<T> GetEnumerator()
 		{
-			throw new NotImplementedException();
+			return new PointerListEnumerator(this);
 		}
 
 		public int IndexOf(T item)
@@ -169,7 +169,7 @@ namespace OctoCTypes
 
 		IEnumerator IEnumerable.GetEnumerator()
 		{
-			throw new NotImplementedException();
+			return GetEnumerator();
 		}
 
 		private void Initialize()
@@ -186,6 +186,53 @@ namespace OctoCTypes
 			public override string ToString()
 			{
 				return Value.ToString() + " -> " + Next;
+			}
+		}
+
+		public class PointerListEnumerator : IEnumerator<T>
+		{
+			private Dictionary<int, Element<T>> storage;
+			private int start;
+			private int point;
+
+			public PointerListEnumerator(PointerList<T> pointerList)
+			{
+				storage = pointerList.storage;
+				var random = new Random();
+				var zeroPoint = random.Next();
+				while (storage.ContainsKey(zeroPoint))
+					zeroPoint = random.Next();
+				storage.Add(zeroPoint, new Element<T> { Next = pointerList.start, Value = default(T) });
+				point = start = zeroPoint;
+			}
+
+			public T Current {
+				get {
+					return storage[point].Value;
+				}
+			}
+
+			object IEnumerator.Current {
+				get { return Current; }
+			}
+
+			public void Dispose()
+			{
+				storage = null;
+				point = 0;
+			}
+
+			public bool MoveNext()
+			{
+				if (storage[point].Next == 0)
+					return false;
+				point = storage[point].Next;
+				return true;
+			}
+
+			public void Reset()
+			{
+				point = start;
 			}
 		}
 	}
