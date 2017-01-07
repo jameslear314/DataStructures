@@ -7,8 +7,8 @@ namespace OctoCTypes
 {
 	public class PointerList<T> : IList<T>
 	{
-		private Dictionary<int, Element<T>> storage;
-		private int start;
+		internal Dictionary<int, Element<T>> storage;
+		internal int start;
 
 		public PointerList() { Initialize(); }
 
@@ -98,7 +98,7 @@ namespace OctoCTypes
 
 		public IEnumerator<T> GetEnumerator()
 		{
-			return new PointerListEnumerator(this);
+			return new PointerListEnumerator<T>(this);
 		}
 
 		public int IndexOf(T item)
@@ -177,63 +177,64 @@ namespace OctoCTypes
 			storage = new Dictionary<int, Element<T>> { { 0, new Element<T> { Next = 0, Value = default(T) } } };
 			start = 0;
 		}
+	}
+	internal class Element<S>
+	{
+		internal int Next;
+		internal S Value;
 
-		internal class Element<S>
+		public override string ToString()
 		{
-			internal int Next;
-			internal S Value;
+			return Value.ToString() + " -> " + Next;
+		}
+	}
+	public class PointerListEnumerator<T> : IEnumerator<T>
+	{
+		private Dictionary<int, Element<T>> storage;
+		private int start;
+		private int point;
 
-			public override string ToString()
+		public PointerListEnumerator(PointerList<T> pointerList)
+		{
+			storage = pointerList.storage;
+			var random = new Random();
+			var zeroPoint = random.Next();
+			while (storage.ContainsKey(zeroPoint))
+				zeroPoint = random.Next();
+			storage.Add(zeroPoint, new Element<T> { Next = pointerList.start, Value = default(T) });
+			point = start = zeroPoint;
+		}
+
+		public T Current
+		{
+			get
 			{
-				return Value.ToString() + " -> " + Next;
+				return storage[point].Value;
 			}
 		}
 
-		public class PointerListEnumerator : IEnumerator<T>
+		object IEnumerator.Current
 		{
-			private Dictionary<int, Element<T>> storage;
-			private int start;
-			private int point;
+			get { return Current; }
+		}
 
-			public PointerListEnumerator(PointerList<T> pointerList)
-			{
-				storage = pointerList.storage;
-				var random = new Random();
-				var zeroPoint = random.Next();
-				while (storage.ContainsKey(zeroPoint))
-					zeroPoint = random.Next();
-				storage.Add(zeroPoint, new Element<T> { Next = pointerList.start, Value = default(T) });
-				point = start = zeroPoint;
-			}
+		public void Dispose()
+		{
+			storage = null;
+			point = 0;
+		}
 
-			public T Current {
-				get {
-					return storage[point].Value;
-				}
-			}
+		public bool MoveNext()
+		{
+			if (storage[point].Next == 0)
+				return false;
+			point = storage[point].Next;
+			return true;
+		}
 
-			object IEnumerator.Current {
-				get { return Current; }
-			}
-
-			public void Dispose()
-			{
-				storage = null;
-				point = 0;
-			}
-
-			public bool MoveNext()
-			{
-				if (storage[point].Next == 0)
-					return false;
-				point = storage[point].Next;
-				return true;
-			}
-
-			public void Reset()
-			{
-				point = start;
-			}
+		public void Reset()
+		{
+			point = start;
 		}
 	}
 }
