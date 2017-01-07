@@ -236,12 +236,11 @@ namespace OctoCTests
 			IEnumerator<int> intEnum = arrayList.GetEnumerator();
 			int count = 0;
 
-			Assert.ThrowsException<IndexOutOfRangeException>(() => intEnum.Current);
+			Assert.AreEqual(default(int), intEnum.Current);
 			while (intEnum.MoveNext())
 				Assert.AreEqual(count++, intEnum.Current);
-			Assert.ThrowsException<IndexOutOfRangeException>(() => intEnum.Current);
 			intEnum.Reset();
-			Assert.ThrowsException<IndexOutOfRangeException>(() => intEnum.Current);
+			Assert.AreEqual(default(int), intEnum.Current);
 			intEnum.Dispose();
 		}
 
@@ -253,12 +252,11 @@ namespace OctoCTests
 			IEnumerator intEnum = ((IEnumerable)arrayList).GetEnumerator();
 			int count = 0;
 
-			Assert.ThrowsException<IndexOutOfRangeException>(() => intEnum.Current);
+			Assert.AreEqual(default(int), intEnum.Current);
 			while (intEnum.MoveNext())
 				Assert.AreEqual(count++, intEnum.Current);
-			Assert.ThrowsException<IndexOutOfRangeException>(() => intEnum.Current);
 			intEnum.Reset();
-			Assert.ThrowsException<IndexOutOfRangeException>(() => intEnum.Current);
+			Assert.AreEqual(default(int), intEnum.Current);
 		}
 
 		[TestMethod]
