@@ -11,12 +11,7 @@ namespace OctoCTypes
 		internal int start;
 
 		public PointerList() { Initialize(); }
-
-		public PointerList(T element)
-		{
-			Initialize();
-			Add(element);
-		}
+		public PointerList(T element) : this() { Add(element); }
 
 		public T this[int index] {
 			get { return storage[GetPointerToValue(index)].Value; }
