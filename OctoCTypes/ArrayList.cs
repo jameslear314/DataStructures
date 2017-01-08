@@ -69,9 +69,7 @@ namespace OctoCTypes
 
 		public void CopyTo(T[] array, int arrayIndex)
 		{
-			if (array == null) throw new ArgumentNullException("array", "Array receiving elements must not be null.");
-			if (arrayIndex < 0) throw new ArgumentOutOfRangeException("arrayIndex", "Array index must be positive.");
-			if (array.Length - arrayIndex < count) throw new ArgumentException("Array receiving elements must be longer than this ArrayList.");
+			CopyToIndexExceptions(array, arrayIndex);
 			var sourceArray = new T[count];
 			for (var i = 0; i < count; i++)
 				sourceArray[i] = storage[i];
@@ -129,6 +127,13 @@ namespace OctoCTypes
 		private void IndexOutOfRange(int index)
 		{
 			if (index < 0 || index >= count) throw new ArgumentOutOfRangeException("index", "Index must be within the index range of the ArrayList");
+		}
+
+		private void CopyToIndexExceptions(T[] array, int arrayIndex)
+		{
+			if (array == null) throw new ArgumentNullException("array", "Array receiving elements must not be null.");
+			if (arrayIndex < 0) throw new ArgumentOutOfRangeException("arrayIndex", "Array index must be positive.");
+			if (array.Length - arrayIndex < count) throw new ArgumentException("Array receiving elements must be longer than this ArrayList.");
 		}
 	}
 
