@@ -36,7 +36,7 @@ namespace OctoCTypes
 		}
 
 		public int Count { get { return count; } }
-		public bool IsReadOnly { get { return false; } }
+		public bool IsReadOnly => false;
 
 		private void Expand()
 		{
