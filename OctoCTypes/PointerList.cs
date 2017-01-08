@@ -20,7 +20,7 @@ namespace OctoCTypes
 
 		public int Count { get { return storage.Count - 1; } }
 
-		public bool IsReadOnly { get { return false; } }
+		public bool IsReadOnly => false;
 
 		public void Add(T item)
 		{
