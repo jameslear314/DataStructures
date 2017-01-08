@@ -11,7 +11,7 @@ namespace OctoCTests
 	public class PointerListTests
 	{
 		[TestMethod]
-		public void Empty()
+		public void EmptyPL()
 		{
 			var pointList = new PointerList<int>();
 			Assert.IsNotNull(pointList, "pointList was not instantiated empty");
@@ -19,14 +19,14 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void IsNotReadOnly()
+		public void IsNotReadOnlyPL()
 		{
 			var pointList = new PointerList<int>();
 			Assert.IsFalse(pointList.IsReadOnly);
 		}
 
 		[TestMethod]
-		public void OneElement()
+		public void OneElementPL()
 		{
 			var pointList = new PointerList<int>(0);
 			Assert.IsNotNull(pointList, "pointList was not instantiated with an element");
@@ -36,7 +36,7 @@ namespace OctoCTests
 
 		[TestMethod]
 		[Timeout(100)]
-		public void Array()
+		public void ArrayPL()
 		{
 			var pointList = new PointerList<int> { 0, 2, 3 };
 			Assert.AreEqual(0, pointList[0]);
@@ -46,7 +46,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void Add()
+		public void AddPL()
 		{
 			var pointList = new PointerList<int>();
 			Assert.AreEqual(0, pointList.Count, "Empty PointerList should be empty");
@@ -59,7 +59,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void ValueExceptions()
+		public void ValueExceptionsPL()
 		{
 			var pointList = new PointerList<int>(0);
 			Assert.ThrowsException<ArgumentOutOfRangeException>(() => pointList[-1]);
@@ -69,7 +69,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void Value()
+		public void ValuePL()
 		{
 			var pointList = new PointerList<int>(0);
 			Assert.AreEqual(0, pointList[0]);
@@ -78,7 +78,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void Clear()
+		public void ClearPL()
 		{
 			var pointList = new PointerList<int>(0);
 			Assert.AreEqual(1, pointList.Count);
@@ -88,7 +88,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void ClearExceptions()
+		public void ClearExceptionsPL()
 		{
 			var pointList = new PointerList<int>(0);
 			pointList.Clear();
@@ -97,7 +97,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void Contains()
+		public void ContainsPL()
 		{
 			var pointList = new PointerList<int> { 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55 };
 			for (var i = 0; i < pointList.Count; i++)
@@ -110,7 +110,7 @@ namespace OctoCTests
 
 		[TestMethod]
 		[Timeout(100)]
-		public void Contains1k()
+		public void Contains1kPL()
 		{
 			var multiplier = 32;
 			var pointList = new PointerList<int>();
@@ -121,7 +121,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void CopyTo()
+		public void CopyToPL()
 		{
 			var pointList = new PointerList<int>();
 			for (var i = 0; i < 10; i++) pointList.Add(i);
@@ -133,7 +133,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void CopyToExceptions()
+		public void CopyToExceptionsPL()
 		{
 			var pointList = new PointerList<int>();
 			for (var i = 0; i < 10; i++) pointList.Add(i);
@@ -146,7 +146,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void IndexOf()
+		public void IndexOfPL()
 		{
 			var pointList = new PointerList<int>();
 			for (var i = 0; i < 10; i++) pointList.Add(2 * i);
@@ -155,7 +155,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void Insert()
+		public void InsertPL()
 		{
 			var pointList = new PointerList<int>();
 			for (var i = 0; i < 10; i++) pointList.Add(2 * i);
@@ -165,7 +165,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void InsertExceptions()
+		public void InsertExceptionsPL()
 		{
 			var pointList = new PointerList<int>(0);
 			Assert.ThrowsException<ArgumentOutOfRangeException>(() => pointList.Insert(pointList.Count, 0));
@@ -173,7 +173,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void RemoveAtReverse()
+		public void RemoveAtReversePL()
 		{
 			var pointList = new PointerList<int>();
 			for (var i = 0; i < 10; i++) pointList.Add(i);
@@ -192,7 +192,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void RemoveAtBetween()
+		public void RemoveAtBetweenPL()
 		{
 			var pointList = new PointerList<int>();
 			for (var i = 0; i < 10; i++) pointList.Add(i);
@@ -210,7 +210,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void RemoveAtExceptions()
+		public void RemoveAtExceptionsPL()
 		{
 			var pointList = new PointerList<int>();
 			for (var i = 0; i < 10; i++) pointList.Add(i);
@@ -219,7 +219,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void Remove()
+		public void RemovePL()
 		{
 			var pointList = new PointerList<int>();
 			for (var i = 0; i < 10; i++) pointList.Add(i);
@@ -239,7 +239,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void IEnumeratorT()
+		public void IEnumeratorTPL()
 		{
 			var pointList = new PointerList<int>();
 			for (var i = 0; i < 5; i++) pointList.Add(i);
@@ -255,7 +255,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void IEnumerator()
+		public void IEnumeratorPL()
 		{
 			var pointList = new PointerList<int>();
 			for (var i = 0; i < 5; i++) pointList.Add(i);

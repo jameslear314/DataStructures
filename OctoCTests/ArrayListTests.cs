@@ -10,7 +10,7 @@ namespace OctoCTests
 	public class ArrayListTests
 	{
 		[TestMethod]
-		public void Empty()
+		public void EmptyAL()
 		{
 			var arrayList = new ArrayList<int>();
 			Assert.IsNotNull(arrayList, "ArrayList was not instantiated empty");
@@ -18,7 +18,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void OneElement()
+		public void OneElementAL()
 		{
 			var arrayList = new ArrayList<int>(1);
 			Assert.IsNotNull(arrayList, "ArrayList was not instantiated with an element");
@@ -27,7 +27,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void Array()
+		public void ArrayAL()
 		{
 			var arrayList = new ArrayList<int> { 0, 2, 3 };
 			Assert.AreEqual(0, arrayList[0]);
@@ -37,7 +37,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void Add()
+		public void AddAL()
 		{
 			var arrayList = new ArrayList<int>();
 			Assert.AreEqual(0, arrayList.Count, "Empty ArrayList should be empty");
@@ -50,7 +50,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void ValueExceptions()
+		public void ValueExceptionsAL()
 		{
 			var arrayList = new ArrayList<int>(0);
 			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList[-1]);
@@ -60,7 +60,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void Value()
+		public void ValueAL()
 		{
 			var arrayList = new ArrayList<int>(0);
 			Assert.AreEqual(0, arrayList[0]);
@@ -69,7 +69,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void Clear()
+		public void ClearAL()
 		{
 			var arrayList = new ArrayList<int>(0);
 			Assert.AreEqual(1, arrayList.Count);
@@ -79,7 +79,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void ClearExceptions()
+		public void ClearExceptionsAL()
 		{
 			var arrayList = new ArrayList<int>(0);
 			arrayList.Clear();
@@ -88,7 +88,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void Contains()
+		public void ContainsAL()
 		{
 			var arrayList = new ArrayList<int> { 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55 };
 			for (var i = 0; i < arrayList.Count; i++)
@@ -100,7 +100,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void Contains16k()
+		public void Contains16kAL()
 		{
 			var multiplier = 128;
 			var arrayList = new ArrayList<int>();
@@ -111,7 +111,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void CopyTo()
+		public void CopyToAL()
 		{
 			var arrayList = new ArrayList<int>();
 			for (var i = 0; i < 10; i++) arrayList.Add(i);
@@ -123,7 +123,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void CopyToExceptions()
+		public void CopyToExceptionsAL()
 		{
 			var arrayList = new ArrayList<int>();
 			for (var i = 0; i < 10; i++) arrayList.Add(i);
@@ -136,7 +136,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void IndexOf()
+		public void IndexOfAL()
 		{
 			var arrayList = new ArrayList<int>();
 			for (var i = 0; i < 10; i++) arrayList.Add(2 * i);
@@ -145,7 +145,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void Insert()
+		public void InsertAL()
 		{
 			var arrayList = new ArrayList<int>();
 			for (var i = 0; i < 10; i++) arrayList.Add(2 * i);
@@ -155,7 +155,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void InsertExceptions()
+		public void InsertExceptionsAL()
 		{
 			var arrayList = new ArrayList<int>(0);
 			Assert.ThrowsException<ArgumentOutOfRangeException>(() => arrayList.Insert(arrayList.Count, 0));
@@ -163,7 +163,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void RemoveAtReverse()
+		public void RemoveAtReverseAL()
 		{
 			var arrayList = new ArrayList<int>();
 			for (var i = 0; i < 10; i++) arrayList.Add(i);
@@ -182,7 +182,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void RemoveAtBetween()
+		public void RemoveAtBetweenAL()
 		{
 			var arrayList = new ArrayList<int>();
 			for (var i = 0; i < 10; i++) arrayList.Add(i);
@@ -200,7 +200,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void RemoveAtExceptions()
+		public void RemoveAtExceptionsAL()
 		{
 			var arrayList = new ArrayList<int>();
 			for (var i = 0; i < 10; i++) arrayList.Add(i);
@@ -209,7 +209,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void Remove()
+		public void RemoveAL()
 		{
 			var arrayList = new ArrayList<int>();
 			for (var i = 0; i < 10; i++) arrayList.Add(i);
@@ -229,7 +229,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void IEnumeratorT()
+		public void IEnumeratorTAL()
 		{
 			var arrayList = new ArrayList<int>();
 			for (var i = 0; i < 5; i++) arrayList.Add(i);
@@ -245,7 +245,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void IEnumerator()
+		public void IEnumeratorAL()
 		{
 			var arrayList = new ArrayList<int>();
 			for (var i = 0; i < 5; i++) arrayList.Add(i);
@@ -260,7 +260,7 @@ namespace OctoCTests
 		}
 
 		[TestMethod]
-		public void IsNotReadOnly()
+		public void IsNotReadOnlyAL()
 		{
 			var arrayList = new ArrayList<int>();
 			Assert.IsFalse(arrayList.IsReadOnly);
