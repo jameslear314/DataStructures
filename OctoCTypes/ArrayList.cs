@@ -19,14 +19,22 @@ namespace OctoCTypes
 		public ArrayList(T element) : this() { storage[count++] = element; }
 
 		public T this[int index] {
-			get {
-				if (index >= Count || index < 0) throw new ArgumentOutOfRangeException("Index was outside the bounds of the ArrayList.");
+			get
+			{
+				CheckOutOfRange(index);
 				return storage[index];
 			}
-			set {
-				if (index >= Count|| index < 0) throw new ArgumentOutOfRangeException("Index was outside the bounds of the ArrayList.");
+			set
+			{
+				CheckOutOfRange(index);
 				storage[index] = value;
 			} }
+
+		private void CheckOutOfRange(int index)
+		{
+			if (index >= Count || index < 0) throw new ArgumentOutOfRangeException("Index was outside the bounds of the ArrayList.");
+		}
+
 		public int Count { get { return count; } }
 		public bool IsReadOnly { get { return false; } }
 
