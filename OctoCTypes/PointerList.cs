@@ -184,16 +184,15 @@ namespace OctoCTypes
 		}
 		#endregion privates
 	}
+
 	internal class Element<S>
 	{
 		internal int Next;
 		internal S Value;
 
-		public override string ToString()
-		{
-			return Value.ToString() + " -> " + Next;
-		}
+		public override string ToString() { return Value.ToString() + " -> " + Next; }
 	}
+
 	public class PointerListEnumerator<T> : IEnumerator<T>
 	{
 		private Dictionary<int, Element<T>> storage;
