@@ -105,10 +105,7 @@ namespace OctoCTypes
 			storage[count] = default(T);
 		}
 
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return GetEnumerator();
-		}
+		IEnumerator IEnumerable.GetEnumerator() { return GetEnumerator(); }
 
 #region private
 		private void CheckOutOfRange(int index)
