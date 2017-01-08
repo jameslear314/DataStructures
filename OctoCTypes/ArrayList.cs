@@ -30,22 +30,8 @@ namespace OctoCTypes
 				storage[index] = value;
 			} }
 
-		private void CheckOutOfRange(int index)
-		{
-			if (index >= Count || index < 0) throw new ArgumentOutOfRangeException("Index was outside the bounds of the ArrayList.");
-		}
-
 		public int Count { get { return count; } }
 		public bool IsReadOnly => false;
-
-		private void Expand()
-		{
-			var oldArray = storage;
-			storage = new T[storageSize *= 2];
-			var i = 0;
-			while (i < count)
-				storage[i] = oldArray[i++];
-		}
 
 		public void Add(T item)
 		{
@@ -124,6 +110,21 @@ namespace OctoCTypes
 			return GetEnumerator();
 		}
 
+#region private
+		private void CheckOutOfRange(int index)
+		{
+			if (index >= Count || index < 0) throw new ArgumentOutOfRangeException("Index was outside the bounds of the ArrayList.");
+		}
+
+		private void Expand()
+		{
+			var oldArray = storage;
+			storage = new T[storageSize *= 2];
+			var i = 0;
+			while (i < count)
+				storage[i] = oldArray[i++];
+		}
+
 		private void IndexOutOfRange(int index)
 		{
 			if (index < 0 || index >= count) throw new ArgumentOutOfRangeException("index", "Index must be within the index range of the ArrayList");
@@ -135,6 +136,7 @@ namespace OctoCTypes
 			if (arrayIndex < 0) throw new ArgumentOutOfRangeException("arrayIndex", "Array index must be positive.");
 			if (array.Length - arrayIndex < count) throw new ArgumentException("Array receiving elements must be longer than this ArrayList.");
 		}
+#endregion private
 	}
 
 	public class ArrayListEnumerator<T> : IEnumerator<T>
