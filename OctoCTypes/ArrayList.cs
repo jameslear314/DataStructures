@@ -59,10 +59,7 @@ namespace OctoCTypes
 			sourceArray.CopyTo(array, arrayIndex);
 		}
 
-		public IEnumerator<T> GetEnumerator()
-		{
-			return new ArrayListEnumerator<T>(this);
-		}
+		public IEnumerator<T> GetEnumerator() { return new ArrayListEnumerator<T>(this); }
 
 		public int IndexOf(T item)
 		{
