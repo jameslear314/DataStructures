@@ -125,10 +125,7 @@ namespace OctoCTypes
 			storage.Remove(keyToRemove);
 		}
 
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return GetEnumerator();
-		}
+		IEnumerator IEnumerable.GetEnumerator() { return GetEnumerator(); }
 
 #region privates
 
