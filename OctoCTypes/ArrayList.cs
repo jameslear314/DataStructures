@@ -20,11 +20,11 @@ namespace OctoCTypes
 
 		public T this[int index] {
 			get {
-				if (index > Count - 1 || index < 0) throw new ArgumentOutOfRangeException("Index was outside the bounds of the ArrayList.");
+				if (index >= Count || index < 0) throw new ArgumentOutOfRangeException("Index was outside the bounds of the ArrayList.");
 				return storage[index];
 			}
 			set {
-				if (index > Count - 1 || index < 0) throw new ArgumentOutOfRangeException("Index was outside the bounds of the ArrayList.");
+				if (index >= Count|| index < 0) throw new ArgumentOutOfRangeException("Index was outside the bounds of the ArrayList.");
 				storage[index] = value;
 			} }
 		public int Count { get { return count; } }
