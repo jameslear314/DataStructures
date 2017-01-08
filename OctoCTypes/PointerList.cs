@@ -68,10 +68,7 @@ namespace OctoCTypes
 			}
 		}
 
-		public IEnumerator<T> GetEnumerator()
-		{
-			return new PointerListEnumerator<T>(this);
-		}
+		public IEnumerator<T> GetEnumerator() { return new PointerListEnumerator<T>(this); }
 
 		public int IndexOf(T item)
 		{
