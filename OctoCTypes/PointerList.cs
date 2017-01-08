@@ -24,11 +24,7 @@ namespace OctoCTypes
 
 		public void Add(T item)
 		{
-			var generator = new Random();
-
-			var newPoint = generator.Next();
-			while (storage.ContainsKey(newPoint))
-				newPoint = generator.Next();
+			int newPoint = GetNewPointer();
 
 			var position = start;
 			while (position != 0 && storage[position].Next != 0)
@@ -99,15 +95,12 @@ namespace OctoCTypes
 			if (index < 0) throw new ArgumentOutOfRangeException("index", "Index must be greater than or equal to zero.");
 			if (index >= Count) throw new ArgumentOutOfRangeException("index", "Index must be less than Count.");
 
-			var random = new Random();
-			var randomNext = random.Next();
-			while (storage.ContainsKey(randomNext))
-				randomNext = random.Next();
+			int newPoint = GetNewPointer();
 
 			if (index == 0)
 			{
-				storage.Add(randomNext, new Element<T> { Next = start, Value = item });
-				start = randomNext;
+				storage.Add(newPoint, new Element<T> { Next = start, Value = item });
+				start = newPoint;
 				return;
 			}
 
@@ -117,8 +110,8 @@ namespace OctoCTypes
 				position = storage[position].Next;
 			}
 			var element = new Element<T> { Next = storage[position].Next, Value = item };
-			storage.Add(randomNext, element);
-			storage[position].Next = randomNext;
+			storage.Add(newPoint, element);
+			storage[position].Next = newPoint;
 		}
 
 		public bool Remove(T item)
@@ -183,7 +176,16 @@ namespace OctoCTypes
 			if (index < 0) throw new ArgumentOutOfRangeException("index", "Index must be greater than or equal to zero.");
 			if (Count <= index) throw new ArgumentOutOfRangeException("index", "PointerList has fewer elements than index.");
 		}
-#endregion privates
+
+		private int GetNewPointer()
+		{
+			var generator = new Random();
+			var newPoint = generator.Next();
+			while (storage.ContainsKey(newPoint))
+				newPoint = generator.Next();
+			return newPoint;
+		}
+		#endregion privates
 	}
 	internal class Element<S>
 	{
