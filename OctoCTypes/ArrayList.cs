@@ -61,9 +61,6 @@ namespace OctoCTypes
 
 		public IEnumerator<T> GetEnumerator()
 		{
-			var sourceArray = new T[count];
-			for (var i = 0; i < count; i++)
-				sourceArray[i] = storage[i];
 			return new ArrayListEnumerator<T>(this);
 		}
 
