@@ -19,16 +19,8 @@ namespace OctoCTypes
 		}
 
 		public T this[int index] {
-			get
-			{
-				int point = GetPointerToValue(index);
-				return storage[point].Value;
-			}
-			set
-			{
-				int point = GetPointerToValue(index);
-				storage[point].Value = value;
-			}
+			get { return storage[GetPointerToValue(index)].Value; }
+			set { storage[GetPointerToValue(index)].Value = value; }
 		}
 
 		public int Count { get { return storage.Count - 1; } }
