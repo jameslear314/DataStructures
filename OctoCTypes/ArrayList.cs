@@ -162,9 +162,6 @@ namespace OctoCTypes
 			return current < storage.Length;
 		}
 
-		public void Reset()
-		{
-			current = -1;
-		}
+		public void Reset() { current = -1; }
 	}
 }
