@@ -104,11 +104,7 @@ namespace OctoCTypes
 				return;
 			}
 
-			var position = start;
-			for (var i = 0; i < index - 1; i++)
-			{
-				position = storage[position].Next;
-			}
+			int position = GetPointerBefore(index);
 			var element = new Element<T> { Next = storage[position].Next, Value = item };
 			storage.Add(newPoint, element);
 			storage[position].Next = newPoint;
@@ -126,13 +122,9 @@ namespace OctoCTypes
 		public void RemoveAt(int index)
 		{
 			if (index < 0 || index >= Count) throw new ArgumentOutOfRangeException("index", "Index did not fall within the bounds of this ArrayList.");
-			var position = start;
-			for (var i = 0; i < index - 1; i++)
-			{
-				position = storage[position].Next;
-			}
-			var keyToRemove = storage[position].Next;
-			storage[position].Next = storage[keyToRemove].Next;
+			var point = GetPointerBefore(index);
+			var keyToRemove = storage[point].Next;
+			storage[point].Next = storage[keyToRemove].Next;
 			storage.Remove(keyToRemove);
 		}
 
@@ -163,6 +155,17 @@ namespace OctoCTypes
 			count = 0;
 			while (count++ < index && storage[point].Next != 0)
 				point = storage[point].Next;
+		}
+
+		private int GetPointerBefore(int index)
+		{
+			var position = start;
+			for (var i = 0; i < index - 1; i++)
+			{
+				position = storage[position].Next;
+			}
+
+			return position;
 		}
 
 		private static void DidNotReachIndexException(int index, int point, int count)
