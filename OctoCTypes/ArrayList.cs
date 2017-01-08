@@ -41,14 +41,10 @@ namespace OctoCTypes
 		private void Expand()
 		{
 			var oldArray = storage;
-			storage = new T[storageSize * 2];
+			storage = new T[storageSize *= 2];
 			var i = 0;
 			while (i < count)
-			{
-				storage[i] = oldArray[i];
-				i++;
-			}
-			storageSize *= 2;
+				storage[i] = oldArray[i++];
 		}
 
 		public void Add(T item)
