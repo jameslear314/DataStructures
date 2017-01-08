@@ -15,14 +15,8 @@ namespace OctoCTypes
 			storageSize = 1;
 			storage = new T[1];
 			count = 0;
-		}
-
-		public ArrayList(T element)
-		{
-			storageSize = 1;
-			storage = new T[1] { element };
-			count = 1;
-		}
+		} 
+		public ArrayList(T element) : this() { storage[count++] = element; }
 
 		public T this[int index] {
 			get {
