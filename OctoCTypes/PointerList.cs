@@ -211,18 +211,9 @@ namespace OctoCTypes
 			point = start = zeroPoint;
 		}
 
-		public T Current
-		{
-			get
-			{
-				return storage[point].Value;
-			}
-		}
+		public T Current { get { return storage[point].Value; } }
 
-		object IEnumerator.Current
-		{
-			get { return Current; }
-		}
+		object IEnumerator.Current { get { return Current; } }
 
 		public void Dispose()
 		{
@@ -238,9 +229,6 @@ namespace OctoCTypes
 			return true;
 		}
 
-		public void Reset()
-		{
-			point = start;
-		}
+		public void Reset() { point = start; }
 	}
 }
