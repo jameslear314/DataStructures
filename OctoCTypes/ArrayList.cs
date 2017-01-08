@@ -146,8 +146,7 @@ namespace OctoCTypes
 		public ArrayListEnumerator(ArrayList<T> arrayList)
 		{
 			storage = new T[arrayList.Count];
-			for (var i = 0; i < arrayList.Count; i++)
-				storage[i] = arrayList[i];
+			arrayList.CopyTo(storage, 0);
 			current = -1;
 		}
 
