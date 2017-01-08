@@ -19,28 +19,17 @@ namespace OctoCTypes
 		}
 
 		public T this[int index] {
-			get {
-				if (index < 0) throw new ArgumentOutOfRangeException("index", "Index must be greater than or equal to zero.");
-				if (Count <= index) throw new ArgumentOutOfRangeException("index", "PointerList has fewer elements than index.");
-				int point = start;
-				var count = 0;
-				while (count++ < index && storage[point].Next != 0)
-					point = storage[point].Next;
-				if (count < index || point == 0)
-					throw new ArgumentOutOfRangeException("index", "PointerList had fewer elements than index.");
+			get
+			{
+				int point = GetPointerToValue(index);
 				return storage[point].Value;
-			} set {
-				if (index < 0) throw new ArgumentOutOfRangeException("index", "Index must be greater than or equal to zero.");
-				if (Count <= index) throw new ArgumentOutOfRangeException("index", "PointerList has fewer elements than index.");
-
-				int point = start;
-				int count = 0;
-				while (count++ < index && storage[point].Next != 0)
-					point = storage[point].Next;
-				if (count < index || point == 0)
-					throw new ArgumentOutOfRangeException("index", "PointerList had fewer elements than index.");
+			}
+			set
+			{
+				int point = GetPointerToValue(index);
 				storage[point].Value = value;
-			} }
+			}
+		}
 
 		public int Count { get { return storage.Count - 1; } }
 
@@ -172,11 +161,42 @@ namespace OctoCTypes
 			return GetEnumerator();
 		}
 
+#region privates
+
 		private void Initialize()
 		{
 			storage = new Dictionary<int, Element<T>> { { 0, new Element<T> { Next = 0, Value = default(T) } } };
 			start = 0;
 		}
+
+		private int GetPointerToValue(int index)
+		{
+			ValueExceptions(index);
+			MoveToIndex(index, out int point, out int count);
+			DidNotReachIndexException(index, point, count);
+			return point;
+		}
+
+		private void MoveToIndex(int index, out int point, out int count)
+		{
+			point = start;
+			count = 0;
+			while (count++ < index && storage[point].Next != 0)
+				point = storage[point].Next;
+		}
+
+		private static void DidNotReachIndexException(int index, int point, int count)
+		{
+			if (count < index || point == 0)
+				throw new ArgumentOutOfRangeException("index", "PointerList had fewer elements than index.");
+		}
+
+		private void ValueExceptions(int index)
+		{
+			if (index < 0) throw new ArgumentOutOfRangeException("index", "Index must be greater than or equal to zero.");
+			if (Count <= index) throw new ArgumentOutOfRangeException("index", "PointerList has fewer elements than index.");
+		}
+#endregion privates
 	}
 	internal class Element<S>
 	{
