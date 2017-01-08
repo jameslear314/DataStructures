@@ -41,10 +41,7 @@ namespace OctoCTypes
 			count++;
 		}
 
-		public void Clear()
-		{
-			count = 0;
-		}
+		public void Clear() { count = 0; }
 
 		public bool Contains(T item)
 		{
